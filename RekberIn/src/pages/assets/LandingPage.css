@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+* {
+    font-family: Montserrat, Helvetica, sans-serif;
+}
+
+.navbar {
+    background-color: #2CA773;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar-logo {
+    height: 23px;
+    margin-right: 10px;
+}
+.nav-judul {
+    color: #FFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.navigasi .nav-link {
+    color: #dfdfdf;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.navigasi .nav-link:hover {
+    color: #000000;
+}
+.navbar-toggler {
+    border: none;
+    padding: 12px;
+}
+#home {
+    background-color: #2CA773;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+}
+.col-kiri {
+    padding-top: 90px;
+}
+.head-judul {
+    height: 130px;
+    width: 500px;
+    font-size: 43px;
+}
+.head-desc {
+    width: 500px;
+    font-size: 16px;
+    color: #dfdfdf;
+}
+#contact {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.prob-desc {
+    width: 500px;
+}
+.con-kiri {
+    padding-top: 100px;
+}
+#footer {
+    background-color: #2CA773;
+    padding-top: 20px;
+}
+.email {
+    text-decoration: none;
+    color: #dfdfdf  ;
+}
+.foo-text {
+    color: #dfdfdf;
+}
