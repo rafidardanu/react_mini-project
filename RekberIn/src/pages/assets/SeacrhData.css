@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+#cari-data {
+    background-color: #2CA773;
+    color: white;
+    font-family: Montserrat;
+    min-height: 100vh;
+}
