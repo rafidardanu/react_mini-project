@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom"; 
+import { FaSignOutAlt } from "react-icons/fa";
 import "./assets/SeacrhData.css";
 
 function SeacrhData() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    // Make an API request to fetch data from the mock API
     axios
       .get("https://651b9f60194f77f2a5ae9f3f.mockapi.io/data")
       .then((response) => {
@@ -27,8 +27,6 @@ function SeacrhData() {
   const updateUndifined = (index, undifined) => {
     const updatedData = [...tableData];
     const dataToUpdate = updatedData[index];
-
-    // Make a PUT request to update the Resi/Status on the mock API
     axios
       .put(
         `https://651b9f60194f77f2a5ae9f3f.mockapi.io/data/${dataToUpdate.id}`,
@@ -36,8 +34,7 @@ function SeacrhData() {
           undifined: undifined,
         }
       )
-      .then((response) => {
-        // Handle successful update if needed
+      .then(() => {
         console.log("Resi/Status updated successfully");
       })
       .catch((error) => {
@@ -46,6 +43,14 @@ function SeacrhData() {
 
     setTableData(updatedData);
   };
+
+    const handleLogout = () => {
+      const confirmLogout = window.confirm("Yakin Keluar?");
+
+      if (confirmLogout) {
+        console.log("Berhasil Keluar");
+      }
+    };
 
   return (
     <>
@@ -60,6 +65,14 @@ function SeacrhData() {
                 <br />
                 kemudian Mengirimkan Barang dan Menginputkan Resi.
               </p>
+              <Link
+                to="/login-seller"
+                className="btn btn-danger mt-4"
+                onClick={handleLogout}
+              >
+                <FaSignOutAlt className="me-2" />
+                Keluar
+              </Link>
             </div>
           </div>
         </div>
@@ -93,7 +106,7 @@ function SeacrhData() {
                       <img
                         src={data.imgTransfer}
                         alt="Bukti Pembayaran"
-                        className="img-thumbnail" // Add the Bootstrap class
+                        className="img-thumbnail"
                         style={{ maxWidth: "150px" }}
                       />
                     </td>
