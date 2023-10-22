@@ -48,15 +48,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
-.forgot-password-link {
+.forgot-back {
   text-decoration: none;
-  color: rgb(172, 172, 172);
+  color: rgb(197, 197, 197);
   font-size: 13px;
-  padding-right: 185px;
 }
-.forgot-password-link:hover {
+.forgot-back:hover {
   color: rgb(0, 0, 0);
 }
 

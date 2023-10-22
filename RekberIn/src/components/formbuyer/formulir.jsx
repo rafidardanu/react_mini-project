@@ -1,5 +1,7 @@
 import { useState, useEffect} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { FaSignOutAlt } from "react-icons/fa";
 
 function Formulir() {
   const [inputName, setInputName] = useState("");
@@ -248,12 +250,20 @@ function Formulir() {
   };
 
   // Delete
-  const deleteData = async (id) => {
-    try {
-      await axios.delete(`${apiURL}/${id}`);
-      fetchData();
-    } catch (error) {
-      console.error("Error deleting data:", error);
+  const deleteData = async (index) => {
+    const dataToDelete = tableData[index];
+    const confirmDelete = window.confirm(
+      "Jika sudah diterima maka Data akan Terhapus"
+    );
+    if (confirmDelete) {
+      try {
+        await axios.delete(`${apiURL}/${dataToDelete.id}`);
+        const updatedTableData = [...tableData];
+        updatedTableData.splice(index, 1);
+        setTableData(updatedTableData);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
     }
   };
 
@@ -301,6 +311,13 @@ function Formulir() {
     }
   };
 
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Yakin Keluar?")
+    if (confirmLogout) {
+      console.log("Berhasil Keluar");
+    }
+  };
+
   return (
     <div id="Formulir">
       <div className="container">
@@ -316,6 +333,14 @@ function Formulir() {
                 Setelah Anda menyelesaikan transfer, Anda dapat melanjutkan
                 dengan mengisi formulir pembelian dengan data yang akurat.
               </p>
+              <Link
+                to="/login-buyer"
+                className="btn btn-danger mt-4"
+                onClick={handleLogout}
+              >
+                <FaSignOutAlt className="me-2" />
+                Keluar
+              </Link>
             </div>
             <div className="main-form">
               <div>
@@ -529,7 +554,12 @@ function Formulir() {
                     >
                       Edit
                     </button>
-                    <button className="btn btn-danger">Terima</button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteData(index)}
+                    >
+                      Terima
+                    </button>
                   </td>
                 </tr>
               ))}

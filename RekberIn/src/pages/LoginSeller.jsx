@@ -17,7 +17,6 @@ const LoginSeller = () => {
       setError("Invalid username or password");
     }
   };
-
   return (
     <div id="seller">
       <div className="container seller-container">
@@ -49,14 +48,21 @@ const LoginSeller = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {error && <div className="alert alert-danger">{error}</div>}
-              <div className="login-controls">
-              <button className="btn btn-primary mt-4" onClick={handleLogin}>
-                Login
-              </button>
-              <a href="/forgot-password" className="forgot-password-link pt-4 text-white">
-                Lupa Password?
-              </a>
+              {error && (
+                <div className="alert alert-danger alert-login">{error}</div>
+              )}
+              <div className="login-controls d-flex justify-content-between mt-5">
+                <button className="btn btn-primary" onClick={handleLogin}>
+                  Masuk
+                </button>
+                <div className="d-flex flex-column">
+                  <a href="/forgot-password" className="forgot-back mb-2">
+                    Lupa Password?
+                  </a>
+                  <a href="/" className="forgot-back">
+                    kembali
+                  </a>
+                </div>
               </div>
             </div>
           </div>
