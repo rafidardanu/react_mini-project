@@ -1,5 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import WhatsAppLogo from "bootstrap-icons/icons/whatsapp.svg";
+import { Link } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
 
 function ForgotPassword() {
   return (
@@ -14,7 +16,12 @@ function ForgotPassword() {
       >
         <img src={WhatsAppLogo} alt="WhatsApp Logo" className="me-2" />
         Hubungi Admin
-      </a>
+      </a> <br />
+      <Link to="/">
+        <button className="btn btn-primary btn-lg mt-4">
+          <AiOutlineHome className="me-2" /> Home
+        </button>
+      </Link>
     </div>
   );
 }
