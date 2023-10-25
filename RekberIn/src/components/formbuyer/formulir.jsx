@@ -541,7 +541,7 @@ function Formulir() {
                     <img
                       src={data.imgTransfer}
                       alt="Bukti Pembayaran"
-                      className="img-thumbnail" // Add the Bootstrap class
+                      className="img-thumbnail"
                       style={{ maxWidth: "150px" }}
                     />
                   </td>

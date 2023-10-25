@@ -1,10 +1,11 @@
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import LandingPage from "../pages/LandingPage"
 import LoginBuy from "../pages/LoginBuyer";
 import LoginSell from "../pages/LoginSeller";
 import ForgotPassword from "../pages/ForgotPassword";
 import FormBuyer from "../pages/FormBuyer";
-import SeacrhData from "../pages/SeacrhData";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import SearchData from "../pages/SearchData";
+// import DataDetail from "../pages/DetailData";
 
 const router = createBrowserRouter([
     {
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
     },
     {
         path: "/search-data",
-        element: <SeacrhData />
-    }
+        element: <SearchData />
+    },
+    // {
+    //     path: "/search-data/:id",
+    //     element: <DataDetail />
+    // }
 ]);
 
 function Router() {

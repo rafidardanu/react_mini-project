@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
-import "./assets/SeacrhData.css";
+import "./assets/SearchData.css";
 
-function SeacrhData() {
+function SearchData() {
   const [tableData, setTableData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     axios
@@ -44,13 +45,19 @@ function SeacrhData() {
     setTableData(updatedData);
   };
 
-    const handleLogout = () => {
-      const confirmLogout = window.confirm("Yakin Keluar?");
+  const handleSearch = () => {
+    const filteredData = tableData.filter((data) =>
+      data.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setTableData(filteredData);
+  };
 
-      if (confirmLogout) {
-        console.log("Berhasil Keluar");
-      }
-    };
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("Yakin Keluar?");
+    if (confirmLogout) {
+      console.log("Berhasil Keluar");
+    }
+  };
 
   return (
     <>
@@ -77,6 +84,15 @@ function SeacrhData() {
           </div>
         </div>
         <section id="table-hasil">
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search by name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button onClick={handleSearch}>Search</button>
+          </div>
           <div className="table-responsive">
             <table className="table table-bordered table-striped table-hover">
               <thead>
@@ -126,6 +142,11 @@ function SeacrhData() {
                       >
                         Update Resi
                       </button>
+                      <button
+                        className="btn btn-info"
+                      >
+                        Detail
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -138,4 +159,4 @@ function SeacrhData() {
   );
 }
 
-export default SeacrhData;
+export default SearchData;
