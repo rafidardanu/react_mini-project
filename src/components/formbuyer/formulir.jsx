@@ -2,6 +2,12 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  "https://opoelgobmiysczmqcaic.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wb2VsZ29ibWl5c2N6bXFjYWljIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgwNDE3ODksImV4cCI6MjAxMzYxNzc4OX0.32j7MR0e_pSOA1VrxyH5cF3dRxQxE_jSLZc-rhd979w"
+);
 
 function Formulir() {
   const [inputName, setInputName] = useState("");
@@ -127,9 +133,17 @@ function Formulir() {
       setDescError("");
     }
   };
-  const buktiTransferChange = (e) => {
-    const value = e.target.value;
+  const buktiTransferChange = async(e) => {
+    const value = e.target.files[0];
     setTransfer(value);
+    const { data, error } = await supabase
+      .storage
+      .from('buktikirim')
+      .upload(value.name, value, {
+        upsert: true
+      })
+      console.log(data)
+      console.log(error)
     if (value.trim() === "") {
       setTransferError("Bukti Transfer tidak boleh kosong");
     } else {
@@ -269,6 +283,9 @@ function Formulir() {
 
   // Update
   const handleSubmit = () => {
+    const { data } = supabase.storage
+      .from("buktikirim")
+      .getPublicUrl(transfer.name);
     if (isFormValid()) {
       const newData = {
         name: inputName,
@@ -281,7 +298,7 @@ function Formulir() {
         ongkir: priceSending,
         total: totalPrice,
         desc: description,
-        imgTransfer: transfer,
+        imgTransfer: data.publicUrl,
       };
       postData(newData);
       handleDataUpdate(newData);
