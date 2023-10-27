@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
+import axios from "axios";
+import Modal from "../components/searchdata/Modal";
 import "./assets/SearchData.css";
 
 function SearchData() {
   const [tableData, setTableData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
 
   useEffect(() => {
     axios
@@ -57,6 +60,16 @@ function SearchData() {
     if (confirmLogout) {
       console.log("Berhasil Keluar");
     }
+  };
+
+  const handleDetailClick = (data) => {
+    setSelectedData(data);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedData(null);
+    setShowModal(false);
   };
 
   return (
@@ -135,15 +148,16 @@ function SearchData() {
                         onChange={(e) => handleResiChange(e, index)}
                       />
                     </td>
-                    <td style={{ minWidth: "120px" }}>
+                    <td style={{ minWidth: "250px" }}>
                       <button
-                        className="btn btn-success"
+                        className="btn btn-success me-2"
                         onClick={() => updateUndifined(index, data.undifined)}
                       >
                         Update Resi
                       </button>
                       <button
                         className="btn btn-info"
+                        onClick={() => handleDetailClick(data)}
                       >
                         Detail
                       </button>
@@ -151,6 +165,13 @@ function SearchData() {
                   </tr>
                 ))}
               </tbody>
+              {showModal && selectedData && (
+                <Modal
+                  show={showModal}
+                  onClose={closeModal}
+                  data={selectedData}
+                />
+              )}
             </table>
           </div>
         </section>
