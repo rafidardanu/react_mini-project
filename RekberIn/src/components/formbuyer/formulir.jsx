@@ -138,12 +138,12 @@ function Formulir() {
   };
 
   // Local Storage
-  // useEffect(() => {
-  //   const storedTableData = localStorage.getItem("tableData");
-  //   if (storedTableData) {
-  //     setTableData(JSON.parse(storedTableData));
-  //   }
-  // }, []);
+  useEffect(() => {
+    const storedTableData = localStorage.getItem("tableData");
+    if (storedTableData) {
+      setTableData(JSON.parse(storedTableData));
+    }
+  }, []);
 
 
   const isFormValid = () => {

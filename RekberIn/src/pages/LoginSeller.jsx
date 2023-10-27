@@ -23,7 +23,7 @@ const LoginSeller = () => {
         <div className="row justify-content-center">
           <div className="col-lg-6">
             <div className="login-form">
-              <h2 className="fw-bold mb-4">Login-Penjual</h2>
+              <h2 className="fw-bold text-white mb-4">Login-Penjual</h2>
               <div className="mb-3">
                 <label htmlFor="username" className="form-label">
                   Username
