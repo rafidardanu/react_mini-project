@@ -1,5 +1,32 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import OpenAI from "openai";
+
 function Home() {
+  const openai = new OpenAI({
+    apiKey: "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",
+    dangerouslyAllowBrowser: true,
+  });
+
+  const [prompt, setPrompt] = useState("");
+  const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async () => {
+    setLoading(true);
+    try {
+      const response = await openai.completions.create({
+        model: "text-davinci-003",
+        prompt: `Transaksi aman dan Rekening Bersama di RekberIn: ${prompt}`,
+        temperature: 0.5,
+        max_tokens: 100,
+      });
+      setResult(response.choices[0].text);
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false);
+  };
   return (
     <main id="home">
       <div className="container">
@@ -9,10 +36,10 @@ function Home() {
               Transaksi Aman bersama RekberIn
             </h1>
             <p className="head-desc">
-              Dengan RekberIn anda bisa bertransaksi antar Penjual dan Pembeli
+              Dengan RekberIn, Anda bisa bertransaksi antar Penjual dan Pembeli
               dengan aman menggunakan metode Rekening Bersama.
-              <p className="pt-2">sejak ©2023</p>
             </p>
+            <p className="pt-2">Sejak ©2023</p>
             <div className="pt-4">
               <Link to="/login-buyer">
                 <button className="btn btn-primary me-4">Pembeli</button>
@@ -24,6 +51,27 @@ function Home() {
           </div>
           <div className="col col-12 col-md-6">
             <img src="./transaksi.png" className="img-fluid" alt="" />
+          </div>
+        </div>
+        <div className="row implementasiai">
+          <div className="col col-5 d-flex">
+            <input
+              type="text"
+              className="form-control border-1 inputai"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="Ask anything"
+            />
+            <button
+              className="btn buttonai ms-2"
+              onClick={handleClick}
+              disabled={loading || prompt.length === 0}
+            >
+              Test
+            </button>
+          </div>
+          <div className="col-8 pt-3">
+            <pre className="result">{result}</pre>
           </div>
         </div>
       </div>

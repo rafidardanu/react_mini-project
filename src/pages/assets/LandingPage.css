@@ -53,6 +53,24 @@
     font-size: 16px;
     color: #dfdfdf;
 }
+.implementasiai {
+    justify-content: center;
+    margin-top: 50px;
+}
+.inputai {
+    background-color: #2CA773;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.buttonai{
+    background-color: #2CA773;
+    color: #FFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.answerai{
+    background-color: #2CA773;
+    color: #FFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 #contact {
     height: 100vh;
     display: flex;
