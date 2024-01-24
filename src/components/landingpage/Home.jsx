@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import OpenAI from "openai";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 function Home() {
   const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   });
 
